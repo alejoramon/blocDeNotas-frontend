@@ -1,6 +1,6 @@
 import catImage from "./assets/appdenotas.png";
 
-import "./Header.css";
+// import "./Header.css";
 
 const Header = () => {
   return (
