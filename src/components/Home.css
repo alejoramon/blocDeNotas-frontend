@@ -1,0 +1,16 @@
+
+  
+  /* Home.css */
+.container {
+    text-align: center;
+    max-width: 600px;
+    margin: 40px auto; /* Ajusta el margen superior según tus preferencias para mover el texto hacia abajo */
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
