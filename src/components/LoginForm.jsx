@@ -14,11 +14,28 @@ function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica de inicio de sesión, como enviar la información al servidor
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    try {
+      const response = await fetch("http://localhost:4000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // Aquí puedes manejar la lógica de éxito, como redireccionar a otra página
+        console.log("Inicio de sesión exitoso");
+      } else {
+        // Aquí puedes manejar la lógica de error, como mostrar un mensaje al usuario
+        console.error("Inicio de sesión fallido");
+      }
+    } catch (error) {
+      console.error("Error al realizar la solicitud:", error);
+    }
   };
 
   return (
