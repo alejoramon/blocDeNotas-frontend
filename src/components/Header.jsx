@@ -4,11 +4,15 @@ import { NavLink } from "react-router-dom";
 import catImage from "../assets/appdenotas.png";
 import "./Header.css";
 
-function Header() {
+const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -20,24 +24,16 @@ function Header() {
         <div className="menu-icon" onClick={toggleMobileMenu}>
           ☰
         </div>
-        <NavLink
-          to="/"
-          activeClassName="active"
-          onClick={() => setMobileMenuOpen(false)}
-        >
+        <NavLink to="/" onClick={closeMobileMenu}>
           Inicio de sesión
         </NavLink>
-        <NavLink
-          to="/CreateUser"
-          activeClassName="active"
-          onClick={() => setMobileMenuOpen(false)}
-        >
+        <NavLink to="/CreateUser" onClick={closeMobileMenu}>
           Registrarse
         </NavLink>
         {/* Agrega más enlaces de navegación según tus necesidades */}
       </div>
     </header>
   );
-}
+};
 
 export default Header;

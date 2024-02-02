@@ -1,14 +1,10 @@
-// CreateUser.jsx
+// LoginForm.jsx
 import React, { useState } from "react";
+import "./LoginForm.css"; // Importa el archivo de estilo
 
-function CreateUser() {
-  const [name, setName] = useState("");
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -20,19 +16,13 @@ function CreateUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica de registro, como enviar la información al servidor
-    console.log("Name:", name);
+    // Aquí puedes realizar la lógica de inicio de sesión, como enviar la información al servidor
     console.log("Email:", email);
     console.log("Password:", password);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
       <label>
         Email:
         <input type="email" value={email} onChange={handleEmailChange} />
@@ -47,9 +37,9 @@ function CreateUser() {
         />
       </label>
       <br />
-      <button type="submit">Registrarse</button>
+      <button type="submit">Iniciar Sesión</button>
     </form>
   );
 }
 
-export default CreateUser;
+export default LoginForm;
