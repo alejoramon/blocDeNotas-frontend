@@ -30,7 +30,6 @@ const Header = () => {
         <NavLink to="/CreateUser" onClick={closeMobileMenu}>
           Registrarse
         </NavLink>
-        {/* Agrega más enlaces de navegación según tus necesidades */}
       </div>
     </header>
   );

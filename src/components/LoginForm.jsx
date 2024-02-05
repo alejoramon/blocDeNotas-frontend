@@ -27,10 +27,8 @@ function LoginForm() {
       });
 
       if (response.ok) {
-        // Aquí puedes manejar la lógica de éxito, como redireccionar a otra página
         console.log("Inicio de sesión exitoso");
       } else {
-        // Aquí puedes manejar la lógica de error, como mostrar un mensaje al usuario
         console.error("Inicio de sesión fallido");
       }
     } catch (error) {
