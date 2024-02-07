@@ -1,0 +1,32 @@
+.container {
+  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+.note-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre las notas */
+}
+
+.note {
+  flex: 0 1 calc(25% - 20px); /* Tamaño de cada columna (25% menos el espacio entre las notas) */
+  padding: 10px;
+  background-color: #f9f9f9; /* Color de fondo de cada nota */
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.note button {
+  background-color: #ff6347; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Agregar estilo de fondo para cada contenedor de nota */
+.note {
+  background-color: #f2f2f2; /* Color de fondo claro */
+}

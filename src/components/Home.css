@@ -1,33 +1,41 @@
 /* Home.css */
 body {
-  font-family: 'Open Sans', sans-serif; /* Aplica la fuente Open Sans al cuerpo de la página */
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100vw; /* Ancho completo de la ventana gráfica */
+  height: 100vh; /* Altura completa de la ventana gráfica */
+  background-image: url('../assets/fondo_app.svg'); 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: column; /* Alinea el contenido en una columna */
+}
+
+.content {
+  max-width: 600px;
+  margin: 20px;
   text-align: center;
 }
 
 h1 {
   font-size: 2em;
-  color: #f5462e; /* Azul */f5462e
-}
-
-.content {
-  max-width: 600px; /* Ajusta el ancho máximo del contenedor del párrafo */
-  margin: 0 auto; /* Centra el contenedor en el espacio disponible */
+  color: #f5462e;
 }
 
 p {
   font-size: 1.2em;
   color: #555;
-  text-align: center;
 }
 
 h2 {
   font-size: 1.5em;
-  color: #5a3c30 /* Azul */
+  color: #5a3c30;
   margin-top: 20px;
 }
 

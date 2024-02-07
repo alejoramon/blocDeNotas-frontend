@@ -8,20 +8,23 @@ import LoginForm from "./components/LoginForm";
 import CreateUser from "./components/CreateUser";
 import CreateNote from "./components/CreateNote";
 import NotesList from "./components/NotesList";
+import "./global.css";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/CreateUser" element={<CreateUser />} />
-        <Route path="/create" element={<CreateNote />} />
-        <Route path="/notes" element={<NotesList />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <div className="app-container">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/CreateUser" element={<CreateUser />} />
+          <Route path="/create" element={<CreateNote />} />
+          <Route path="/notes" element={<NotesList />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

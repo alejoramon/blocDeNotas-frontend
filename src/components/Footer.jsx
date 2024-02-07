@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className="footer-container">
       <div>
-        <p>&copy; 2024 AppdeNotas | Todos los derechos reservados</p>
+        <p>&copy; 2024 AppdeNotas | Todos los derechos reservados | </p>
       </div>
       <div className="github-link">
         <a

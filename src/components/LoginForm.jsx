@@ -1,10 +1,14 @@
 // LoginForm.jsx
 import React, { useState } from "react";
 import "./LoginForm.css"; // Importa el archivo de estilo
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, betterSetUser] = useUser();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -28,6 +32,9 @@ function LoginForm() {
 
       if (response.ok) {
         console.log("Inicio de sesión exitoso");
+        const data = await response.json();
+        betterSetUser(data);
+        navigate("/notes");
       } else {
         console.error("Inicio de sesión fallido");
       }

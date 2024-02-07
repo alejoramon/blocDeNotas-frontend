@@ -1,30 +1,28 @@
 // CreateNote.jsx
 import React, { useState } from "react";
-// import "./CreateNote.css";
+import { createNote } from "../services/index";
 
 function CreateNote() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [noteData, setNoteData] = useState({
+    title: "",
+    detail: "",
+    text: "",
+    categoriaId: "",
+  });
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNoteData((prevNoteData) => ({
+      ...prevNoteData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/notes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
-      });
+      const response = await createNote(noteData);
 
       if (response.ok) {
         console.log("Nota creada exitosamente");
@@ -40,12 +38,37 @@ function CreateNote() {
     <form onSubmit={handleSubmit}>
       <label>
         Título:
-        <input type="text" value={title} onChange={handleTitleChange} />
+        <input
+          type="text"
+          name="title"
+          value={noteData.title}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <label>
-        Contenido:
-        <textarea value={content} onChange={handleContentChange} />
+        Detalle:
+        <input
+          type="text"
+          name="detail"
+          value={noteData.detail}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Texto:
+        <textarea name="text" value={noteData.text} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Categoría ID:
+        <input
+          type="text"
+          name="categoriaId"
+          value={noteData.categoriaId}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <button type="submit">Crear Nota</button>
