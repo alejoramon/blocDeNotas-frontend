@@ -46,7 +46,7 @@
 .auth-links .register-link {
   color: #98cee8; /* Color de los enlaces de autenticación */
   text-decoration: none; /* Quita el subrayado predeterminado */
-  margin-right: 20px; /* Espacio entre los enlaces */
+  margin-right: 40px; /* Espacio entre los enlaces */
 }
 
 .auth-links .login-link:hover,

@@ -1,60 +1,47 @@
-// Header.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import catImage from "../assets/appdenotas.png";
 import "./Header.css";
 import { useUser } from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
-  const [user, betterSetUser] = useUser();
+  const [user, setUser] = useUser();
 
-  const closeMobileMenu = () => {
-    // No necesitamos toggleMobileMenu ya que solo estamos mostrando el menú en dispositivos móviles
+  const handleLogout = () => {
+    setUser(null);
   };
 
   return (
     <header className="header-container">
-      <NavLink to="/" className="logo">
+      {/* Enlace dinámico del logo */}
+      <NavLink to={user ? "/notes" : "/"} className="logo">
         <img src={catImage} alt="logo" />
       </NavLink>
       <div className="nav">
-        {/* No necesitamos el icono del menú para dispositivos móviles */}
         {user ? (
           <>
-            <span>{user.userName}</span>
-            {/* Agrega espacio entre el nombre de usuario y el botón de logout */}
-            <span>&nbsp;</span>
+            <span className="user-name">{user.userName}</span>
+            <NavLink to="/create-note" className="create-note-link">
+              <FontAwesomeIcon icon={faPlus} />
+            </NavLink>
             <NavLink
-              to="/"
-              onClick={() => {
-                betterSetUser(null);
-              }}
+              to="/create"
+              onClick={handleLogout}
               className="logout-link"
             >
               <FontAwesomeIcon icon={faSignOutAlt} />
-              Logout
             </NavLink>
           </>
         ) : (
           <>
-            <div className="auth-links">
-              <NavLink
-                to="/login"
-                className="login-link"
-                onClick={closeMobileMenu}
-              >
-                Login
-              </NavLink>
-              <NavLink
-                to="/CreateUser"
-                className="register-link"
-                onClick={closeMobileMenu}
-              >
-                Register
-              </NavLink>
-            </div>
+            <NavLink to="/login" className="login-link">
+              Login
+            </NavLink>
+            <NavLink to="/create-user" className="register-link">
+              Register
+            </NavLink>
           </>
         )}
       </div>

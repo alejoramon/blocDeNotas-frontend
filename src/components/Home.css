@@ -8,7 +8,7 @@ body {
 .container {
   width: 100vw; /* Ancho completo de la ventana gráfica */
   height: 100vh; /* Altura completa de la ventana gráfica */
-  background-image: url('../assets/fondo_app.svg'); 
+  /* background-image: url('../assets/fondo_app.svg');  */
   background-size: cover;
   background-position: center;
   display: flex;

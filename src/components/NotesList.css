@@ -3,30 +3,48 @@
   margin: 0 auto; /* Centra el contenedor horizontalmente */
 }
 
-.note-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Espacio entre las notas */
-}
+ 
 
 .note {
-  flex: 0 1 calc(25% - 20px); /* Tamaño de cada columna (25% menos el espacio entre las notas) */
+  /* Eliminar flex para asegurar que cada nota ocupe toda la anchura disponible */
+  /* flex: 0 1 calc(25% - 20px); */ /* Tamaño de cada columna (25% menos el espacio entre las notas) */
+  width: 100%; /* Cada nota ocupa toda la anchura disponible */
   padding: 10px;
-  background-color: #f9f9f9; /* Color de fondo de cada nota */
+  background-color: rgb(0, 191, 255); /* Color de fondo de cada nota */
+  color: white; /* Color del texto */
+  margin-bottom: 20px; /* Espacio entre las notas */
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  position: relative; /* Establecer la posición relativa para poder posicionar los botones */
 }
 
-.note button {
-  background-color: #ff6347; /* Color de fondo del botón */
-  color: white; /* Color del texto del botón */
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
+.note-buttons {
+  position: absolute; /* Establecer la posición absoluta para posicionar los botones dentro de la nota */
+  bottom: 10px; /* Ajustar la posición vertical de los botones */
+  right: 10px; /* Ajustar la posición horizontal de los botones */
+  display: flex; /* Usar flexbox para alinear los enlaces "Edit" y "Remove" */
+  justify-content: flex-end; /* Alinear los enlaces a la derecha */
 }
 
-/* Agregar estilo de fondo para cada contenedor de nota */
-.note {
-  background-color: #f2f2f2; /* Color de fondo claro */
+.note-buttons a {
+  margin-left: 10px; /* Espacio entre los enlaces "Edit" y "Remove" */
+  color: white; /* Color del texto */
+}
+.note-buttons-wrapper {
+  margin-top: 80px; /* Ajusta el margen superior según sea necesario */
+}
+notes-title {
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+
+.containerMynotes {
+  max-width: 800px; /* Ajusta según sea necesario */
+  margin: 25px auto 0 auto; /* Margen superior, auto para los laterales y cero en la parte inferior */
+}
+
+.note-container {
+  max-width: 100%; /* Utiliza el ancho máximo disponible */
+  padding: 20px; /* Añadir relleno alrededor del contenido */
+  margin-top: 20px; /* Agregar margen superior para separarlo del contenedor de título */
 }

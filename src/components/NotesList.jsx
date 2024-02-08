@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./NotesList.css"; // Importar el archivo de estilos CSS
 import { useUser } from "../context/UserContext";
+
+import "./NotesList.css"; // Importar el archivo de estilos CSS
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
@@ -9,7 +10,6 @@ const NotesList = () => {
 
   useEffect(() => {
     if (!user) {
-      // Manejar el caso en el que el usuario no está autenticado
       console.log("Usuario no autenticado");
       setLoading(false);
       return;
@@ -33,21 +33,43 @@ const NotesList = () => {
       .finally(() => setLoading(false));
   }, [user]);
 
+  const handleDeleteNote = (id) => {
+    fetch(`http://localhost:4000/notas/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `${user.token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al eliminar la nota");
+        }
+        setNotes(notes.filter((note) => note.id !== id));
+      })
+      .catch((error) => console.error("Error deleting note:", error));
+  };
+
   if (loading) {
     return <p>Cargando notas...</p>;
   }
 
   return (
-    <div className="container">
-      <h2>Aquí tienes todas tus notas</h2>
+    <div className="containerMynotes">
+      <h2>My notes</h2>
       <div className="note-container">
         {notes.map((note) => (
           <div key={note.id} className="note">
-            <strong>Título:</strong> {note.title} <br />
-            <strong>Detalle:</strong> {note.detail} <br />
-            <strong>Texto:</strong> {note.text} <br />
-            <strong>Categoría ID:</strong> {note.categoriaId} <br />
-            <button onClick={() => handleDeleteNote(note.id)}>Eliminar</button>
+            <strong>{note.title}</strong>
+            <br />
+            {note.categoriaId}
+            <br />
+            {note.text}
+            <div className="note-buttons">
+              <div className="note-buttons-wrapper">
+                <a href={`/editar/${note.id}`}>Edit</a>
+                <a onClick={() => handleDeleteNote(note.id)}>Remove</a>
+              </div>
+            </div>
           </div>
         ))}
       </div>

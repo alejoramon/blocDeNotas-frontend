@@ -20,7 +20,7 @@ function CreateUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica de registro, como enviar la información al servidor
+
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Password:", password);
@@ -47,7 +47,7 @@ function CreateUser() {
         />
       </label>
       <br />
-      <button type="submit">Registrarse</button>
+      <button type="submit">Register</button>
     </form>
   );
 }

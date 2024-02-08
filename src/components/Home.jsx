@@ -11,7 +11,7 @@ function Home() {
           "Optimiza tu productividad con AppDeNotas. La herramienta esencial
           para dominar tu trabajo y organizar tu vida. Ya sea en tu escritorio o
           dispositivo móvil, esta aplicación eficiente gestiona tanto tu trabajo
-          como tu vida cotidiana". Si aún no tienes una cuenta, puedes{" "}
+          como tu vida cotidiana".
         </p>
       </div>
     </div>

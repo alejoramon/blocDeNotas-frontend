@@ -1,6 +1,3 @@
 body {
-    background-image: url('../assets/fondo_app.svg'); 
-    background-size: cover; /* Ajusta la imagen de fondo para cubrir toda la pantalla */
-    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
-  }
-  
+    background: rgba(240, 240, 240, 0.8) ; 
+}
