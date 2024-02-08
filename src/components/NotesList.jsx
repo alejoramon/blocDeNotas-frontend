@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
+import { Link } from "react-router-dom"; // Importar Link para el botón
 
 import "./NotesList.css"; // Importar el archivo de estilos CSS
 
@@ -55,7 +56,13 @@ const NotesList = () => {
 
   return (
     <div className="containerMynotes">
-      <h2>My notes</h2>
+      <div className="my-notes-header">
+        <h2>My notes</h2>
+        <Link to="/create" className="new-note-btn">
+          New Note
+        </Link>{" "}
+        {/* Botón para crear una nueva nota */}
+      </div>
       <div className="note-container">
         {notes.map((note) => (
           <div key={note.id} className="note">

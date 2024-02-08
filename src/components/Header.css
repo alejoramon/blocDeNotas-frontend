@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 20px; /* Margen a ambos lados */
+  margin: 20px 40px; /* Margen a ambos lados */
+
 }
 
 .nav {

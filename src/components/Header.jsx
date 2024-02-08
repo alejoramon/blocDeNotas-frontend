@@ -4,7 +4,7 @@ import catImage from "../assets/appdenotas.png";
 import "./Header.css";
 import { useUser } from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [user, setUser] = useUser();
@@ -23,9 +23,8 @@ const Header = () => {
         {user ? (
           <>
             <span className="user-name">{user.userName}</span>
-            <NavLink to="/create-note" className="create-note-link">
-              <FontAwesomeIcon icon={faPlus} />
-            </NavLink>
+            {/* Agrega un espacio entre el nombre de usuario y el botón de logout */}
+            <span>&nbsp;&nbsp;</span>
             <NavLink
               to="/create"
               onClick={handleLogout}

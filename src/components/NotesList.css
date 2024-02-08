@@ -10,7 +10,7 @@
   /* flex: 0 1 calc(25% - 20px); */ /* Tamaño de cada columna (25% menos el espacio entre las notas) */
   width: 100%; /* Cada nota ocupa toda la anchura disponible */
   padding: 10px;
-  background-color: rgb(0, 191, 255); /* Color de fondo de cada nota */
+  background-color: rgb(54, 61, 139); /* Color de fondo de cada nota */
   color: white; /* Color del texto */
   margin-bottom: 20px; /* Espacio entre las notas */
   border-radius: 8px;
@@ -47,4 +47,27 @@ notes-title {
   max-width: 100%; /* Utiliza el ancho máximo disponible */
   padding: 20px; /* Añadir relleno alrededor del contenido */
   margin-top: 20px; /* Agregar margen superior para separarlo del contenedor de título */
+}
+.my-notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-note-btn-container {
+  margin-left: auto;
+}
+.new-note-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0056b3;;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-note-btn:hover {
+  background-color: #007bff;
 }
