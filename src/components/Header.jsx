@@ -38,7 +38,7 @@ const Header = () => {
             <NavLink to="/login" className="login-link">
               Login
             </NavLink>
-            <NavLink to="/create-user" className="register-link">
+            <NavLink to="/CreateUser" className="register-link">
               Register
             </NavLink>
           </>
