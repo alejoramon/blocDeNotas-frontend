@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm";
 import CreateUser from "./components/CreateUser";
 import CreateNote from "./components/CreateNote";
 import NotesList from "./components/NotesList";
+import EditNote from "./components/EditNote";
 import "./global.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/CreateUser" element={<CreateUser />} />
           <Route path="/create" element={<CreateNote />} />
           <Route path="/notes" element={<NotesList />} />
+          <Route path="/edit/:noteId" element={<EditNote />} />
         </Routes>
         <Footer />
       </Router>

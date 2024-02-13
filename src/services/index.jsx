@@ -63,7 +63,27 @@ export const getAllNotes = async () => {
     throw new Error(error.message);
   }
 };
-
+export const getAllCategories = async (token) => {
+  try {
+    // Realizamos una solicitud GET al endpoint /notes del backend
+    const response = await fetch(`${baseURL}/categories`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
+      },
+    });
+    const data = await response.json(); // Convertimos la respuesta a JSON
+    if (!response.ok) {
+      // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
+      throw new Error(data.message);
+    }
+    return data; // Devolvemos un arreglo de notas si la operación es exitosa
+  } catch (error) {
+    // Capturamos cualquier error y lo lanzamos
+    throw new Error(error.message);
+  }
+};
 // Función para obtener las notas de un usuario específico
 export const getUserNotes = async (userId) => {
   try {
@@ -82,12 +102,13 @@ export const getUserNotes = async (userId) => {
 };
 
 // Función para crear una nueva nota
-export const createNote = async (noteData) => {
+export const createNote = async (noteData, token) => {
   try {
     // Realizamos una solicitud POST al endpoint /create del backend
-    const response = await fetch(`${baseURL}/create`, {
+    const response = await fetch(`${baseURL}/notas`, {
       method: "POST",
       headers: {
+        Authorization: token,
         "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
       },
       body: JSON.stringify(noteData), // Convertimos los datos de la nueva nota a formato JSON y los enviamos en el cuerpo de la solicitud
@@ -127,19 +148,65 @@ export const updateNote = async (noteId, noteData) => {
   }
 };
 
-// Función para eliminar una nota
-export const deleteNote = async (noteId) => {
+export const getNoteById = async (token, id) => {
   try {
-    // Realizamos una solicitud DELETE al endpoint /notes/${noteId} del backend
-    const response = await fetch(`${baseURL}/notes/${noteId}`, {
-      method: "DELETE",
+    // Realizamos una solicitud GET al endpoint /notes del backend
+    const response = await fetch(`${baseURL}/notas/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
+      },
     });
     const data = await response.json(); // Convertimos la respuesta a JSON
     if (!response.ok) {
       // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
       throw new Error(data.message);
     }
-    return data; // Devolvemos los datos de confirmación si la operación es exitosa
+    return data; // Devolvemos un arreglo de notas si la operación es exitosa
+  } catch (error) {
+    // Capturamos cualquier error y lo lanzamos
+    throw new Error(error.message);
+  }
+};
+export const editNote = async (noteData, token) => {
+  try {
+    // Realizamos una solicitud POST al endpoint /create del backend
+    const response = await fetch(`${baseURL}/notas/${noteData.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
+      },
+      body: JSON.stringify(noteData), // Convertimos los datos de la nueva nota a formato JSON y los enviamos en el cuerpo de la solicitud
+    });
+    const data = await response.json(); // Convertimos la respuesta a JSON
+    if (!response.ok) {
+      // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
+      throw new Error(data.message);
+    }
+    return data; // Devolvemos los datos de la nota creada si la operación es exitosa
+  } catch (error) {
+    // Capturamos cualquier error y lo lanzamos
+    throw new Error(error.message);
+  }
+};
+export const deleteNote = async (noteId, token) => {
+  try {
+    // Realizamos una solicitud POST al endpoint /create del backend
+    const response = await fetch(`${baseURL}/notas/${noteId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
+      },
+    });
+    const data = await response.json(); // Convertimos la respuesta a JSON
+    if (!response.ok) {
+      // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
+      throw new Error(data.message);
+    }
+    return data; // Devolvemos los datos de la nota creada si la operación es exitosa
   } catch (error) {
     // Capturamos cualquier error y lo lanzamos
     throw new Error(error.message);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { Link } from "react-router-dom"; // Importar Link para el botón
-
+import { deleteNote } from "../services";
 import "./NotesList.css"; // Importar el archivo de estilos CSS
 
 const NotesList = () => {
@@ -34,20 +34,9 @@ const NotesList = () => {
       .finally(() => setLoading(false));
   }, [user]);
 
-  const handleDeleteNote = (id) => {
-    fetch(`http://localhost:4000/notas/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `${user.token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error al eliminar la nota");
-        }
-        setNotes(notes.filter((note) => note.id !== id));
-      })
-      .catch((error) => console.error("Error deleting note:", error));
+  const handleDeleteNote = async (id) => {
+    const response = await deleteNote(id, user.token);
+    console.log(response);
   };
 
   if (loading) {
@@ -68,12 +57,13 @@ const NotesList = () => {
           <div key={note.id} className="note">
             <strong>{note.title}</strong>
             <br />
+            Categoria.
             {note.categoriaId}
             <br />
             {note.text}
             <div className="note-buttons">
               <div className="note-buttons-wrapper">
-                <a href={`/editar/${note.id}`}>Edit</a>
+                <Link to={`/edit/${note.id}`}>Edit</Link>
                 <a onClick={() => handleDeleteNote(note.id)}>Remove</a>
               </div>
             </div>
