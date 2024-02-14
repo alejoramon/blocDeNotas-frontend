@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { editNote, getAllCategories, getNoteById } from "../services/index";
 import { useUser } from "../context/UserContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function EditNote() {
   let { noteId } = useParams();
@@ -12,11 +12,15 @@ function EditNote() {
     text: "",
     categoriaId: "",
   });
-  const [user, setUser] = useUser();
+  const navigate = useNavigate();
+
+  const [user] = useUser();
+
   const fetchNote = async () => {
     const noteObjet = await getNoteById(user.token, noteId);
     setNoteData(noteObjet.data);
   };
+
   const fetchCategories = async () => {
     const categoriesObjet = await getAllCategories(user.token);
     setCategories(categoriesObjet.data);
@@ -42,6 +46,7 @@ function EditNote() {
       console.log(response);
       if (response.status == "ok") {
         console.log("Nota creada exitosamente");
+        navigate("/notes");
       } else {
         console.error("Error al crear la nota");
       }

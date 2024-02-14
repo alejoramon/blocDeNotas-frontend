@@ -23,13 +23,9 @@ const Header = () => {
         {user ? (
           <>
             <span className="user-name">{user.userName}</span>
-            {/* Agrega un espacio entre el nombre de usuario y el botón de logout */}
+
             <span>&nbsp;&nbsp;</span>
-            <NavLink
-              to="/create"
-              onClick={handleLogout}
-              className="logout-link"
-            >
+            <NavLink to="/" onClick={handleLogout} className="logout-link">
               <FontAwesomeIcon icon={faSignOutAlt} />
             </NavLink>
           </>

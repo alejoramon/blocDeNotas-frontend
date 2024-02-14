@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createNote, getAllCategories } from "../services/index";
 import { useUser } from "../context/UserContext";
-
+import "./CreateNote.css";
 function CreateNote() {
   const [categories, setCategories] = useState([]);
   const [noteData, setNoteData] = useState({
@@ -12,7 +12,7 @@ function CreateNote() {
     categoriaId: "",
   });
   const [user, setUser] = useUser();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const fetchCategories = async () => {
     const categoriesObjet = await getAllCategories(user.token);
@@ -39,7 +39,7 @@ function CreateNote() {
       console.log(response);
       if (response.status === "ok") {
         console.log("Nota creada exitosamente");
-        history.push("/notes");
+        navigate("/notes"); // Redirige a la página de notas después de crear la nota
       } else {
         console.error("Error al crear la nota");
       }

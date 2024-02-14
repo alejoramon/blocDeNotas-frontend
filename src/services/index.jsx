@@ -48,10 +48,16 @@ export const registerUser = async (userData) => {
 };
 
 // Función para obtener todas las notas disponibles
-export const getAllNotes = async () => {
+export const getAllNotes = async (token) => {
   try {
     // Realizamos una solicitud GET al endpoint /notes del backend
-    const response = await fetch(`${baseURL}/notes`);
+    const response = await fetch(`${baseURL}/notas`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
+      },
+    });
     const data = await response.json(); // Convertimos la respuesta a JSON
     if (!response.ok) {
       // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
@@ -194,6 +200,7 @@ export const editNote = async (noteData, token) => {
 export const deleteNote = async (noteId, token) => {
   try {
     // Realizamos una solicitud POST al endpoint /create del backend
+    console.log(noteId, token);
     const response = await fetch(`${baseURL}/notas/${noteId}`, {
       method: "DELETE",
       headers: {
@@ -202,10 +209,7 @@ export const deleteNote = async (noteId, token) => {
       },
     });
     const data = await response.json(); // Convertimos la respuesta a JSON
-    if (!response.ok) {
-      // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
-      throw new Error(data.message);
-    }
+
     return data; // Devolvemos los datos de la nota creada si la operación es exitosa
   } catch (error) {
     // Capturamos cualquier error y lo lanzamos

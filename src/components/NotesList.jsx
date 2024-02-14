@@ -9,13 +9,7 @@ const NotesList = () => {
   const [loading, setLoading] = useState(true);
   const [user] = useUser();
 
-  useEffect(() => {
-    if (!user) {
-      console.log("Usuario no autenticado");
-      setLoading(false);
-      return;
-    }
-
+  const fetchNotas = () => {
     fetch("http://localhost:4000/notas", {
       headers: {
         Authorization: `${user.token}`,
@@ -28,14 +22,27 @@ const NotesList = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data.data);
         setNotes(data.data);
       })
       .catch((error) => console.error("Error fetching notes:", error))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    if (!user) {
+      console.log("Usuario no autenticado");
+      setLoading(false);
+      return;
+    }
+
+    fetchNotas();
   }, [user]);
 
   const handleDeleteNote = async (id) => {
+    console.log("ENTRO");
     const response = await deleteNote(id, user.token);
+    fetchNotas();
     console.log(response);
   };
 
