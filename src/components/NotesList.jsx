@@ -40,10 +40,11 @@ const NotesList = () => {
   }, [user]);
 
   const handleDeleteNote = async (id) => {
-    console.log("ENTRO");
+    console.log("Antes de la llamada a deleteNote");
     const response = await deleteNote(id, user.token);
+    console.log("Despues de la llamada a deleteNote");
     fetchNotas();
-    console.log(response);
+    console.log("Reponse de deleteNote (data)", response);
   };
 
   if (loading) {
@@ -60,22 +61,33 @@ const NotesList = () => {
         {/* Botón para crear una nueva nota */}
       </div>
       <div className="note-container">
-        {notes.map((note) => (
-          <div key={note.id} className="note">
-            <strong>{note.title}</strong>
-            <br />
-            Categoria.
-            {note.categoriaId}
-            <br />
-            {note.text}
-            <div className="note-buttons">
-              <div className="note-buttons-wrapper">
-                <Link to={`/edit/${note.id}`}>Edit</Link>
-                <a onClick={() => handleDeleteNote(note.id)}>Remove</a>
+        {notes.length > 0 ? (
+          notes.map((note) => (
+            <div key={note.id} className="note">
+              <strong>{note.title}</strong>
+              <br />
+              Categoria.
+              {note.categoriaId}
+              <br />
+              {note.text}
+              <div className="note-buttons">
+                <div className="note-buttons-wrapper">
+                  <Link to={`/edit/${note.id}`}>Edit</Link>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDeleteNote(note.id);
+                    }}
+                  >
+                    Remove
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>No tienes ninguna nota</div>
+        )}
       </div>
     </div>
   );

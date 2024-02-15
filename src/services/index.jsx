@@ -200,7 +200,7 @@ export const editNote = async (noteData, token) => {
 export const deleteNote = async (noteId, token) => {
   try {
     // Realizamos una solicitud POST al endpoint /create del backend
-    console.log(noteId, token);
+    console.log("Antes de la fetch");
     const response = await fetch(`${baseURL}/notas/${noteId}`, {
       method: "DELETE",
       headers: {
@@ -208,7 +208,9 @@ export const deleteNote = async (noteId, token) => {
         "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
       },
     });
+    console.log("Despues de la fetch");
     const data = await response.json(); // Convertimos la respuesta a JSON
+    console.log("Tengo datos delete:", data);
 
     return data; // Devolvemos los datos de la nota creada si la operación es exitosa
   } catch (error) {
