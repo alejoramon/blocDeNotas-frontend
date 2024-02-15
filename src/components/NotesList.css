@@ -71,3 +71,46 @@ notes-title {
 .new-note-btn:hover {
   background-color: #007bff;
 }
+/* En tu archivo NotesList.css */
+
+.empty-note {
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 8px; /* Esquinas redondeadas */
+  padding: 10px 20px; /* Espaciado interno */
+  color: rgb(0, 166, 255); /* Texto azul */
+  display: inline-block; /* Mostrar como elemento en línea */
+  position: relative; /* Posición relativa para el icono de bocadillo */
+}
+
+.empty-note::before {
+  content: ""; /* Contenido vacío */
+  position: absolute; /* Posición absoluta para el icono de bocadillo */
+  border-width: 10px; /* Tamaño del bocadillo */
+  border-style: solid; /* Estilo de borde sólido */
+  border-color: transparent #ffffff transparent transparent; /* Colores del borde */
+  top: 50%; /* Posición en la parte superior al 50% */
+  left: -20px; /* Posición a la izquierda */
+  transform: translateY(-50%); /* Centrar verticalmente */
+}
+.note-buttons a.remove-btn {
+  color: #fFFFFFF4; 
+}
+
+/* Estilos para los botones de edición y eliminación */
+.note-buttons a {
+  color: #FFFFFF; /* Color azul */
+  text-decoration: underline; /* Subrayado como indicador de enlace */
+  margin-left: 10px; /* Espacio entre los botones */
+  cursor: pointer; /* Cursor apuntando */
+}
+
+/* Estilos cuando se pasa el mouse sobre los botones */
+.note-buttons a:hover {
+  text-decoration: none; /* Quitar el subrayado al pasar el mouse */
+  color: #0056b3; /* Color azul más oscuro */
+}
+
+/* Estilos específicos para el botón "Remove" */
+.note-buttons a.remove-btn:hover {
+  color: #ff0000; /* Cambiar el color a rojo */
+}

@@ -36,4 +36,67 @@
   h2 {
     text-align: center; /* Centrar el texto horizontalmente */
   }
+  .container {
+    max-width: 500px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Espacio entre grupos de campos */
+  }
+  
+  label {
+    display: block; /* Hace que las etiquetas de los campos sean de bloque para que estén en líneas separadas */
+    margin-bottom: 5px; /* Espacio entre etiqueta y campo */
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde con color gris claro */
+    border-radius: 4px; /* Esquinas redondeadas */
+  }
+  .container {
+    max-width: 500px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
+    display: flex; /* Usar flexbox */
+    justify-content: space-between; /* Distribuir el espacio disponible entre los elementos */
+    align-items: center; /* Centrar verticalmente */
+  }
+  
+  button {
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+  }
+  
+  button.create {
+    background-color: #007bff; /* Color de fondo azul para "Crear Nota" */
+    color: #fff; /* Color del texto blanco */
+  }
+  
+  button.cancel {
+    background-color: #dc3545; /* Color de fondo rojo para "Cancelar" */
+    color: #fff; /* Color del texto blanco */
+  }
+  
+  button:hover {
+    opacity: 0.8; /* Opacidad reducida al pasar el mouse */
+  }
+  
+  .form-actions {
+    text-align: center; /* Centrar horizontalmente los botones */
+  }
+  
+  .form-actions button {
+    display: inline-block; /* Hacer que los botones sean elementos en línea */
+    margin-right: 10px; /* Espacio entre los botones */
+  }
+  
+  h2 {
+    text-align: center; /* Centrar el título horizontalmente */
+  }
   

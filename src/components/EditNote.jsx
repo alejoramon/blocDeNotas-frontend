@@ -98,7 +98,18 @@ function EditNote() {
         </select>
       </label>
       <br />
-      <button type="submit">Editar Nota</button>
+      <div className="form-actions">
+        <button type="submit" className="update">
+          Actualizar Nota
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate("/notes")}
+          className="cancel"
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }

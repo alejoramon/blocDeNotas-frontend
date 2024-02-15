@@ -93,7 +93,18 @@ function CreateNote() {
           </select>
         </label>
         <br />
-        <button type="submit">Crear Nota</button>
+        <div className="form-actions">
+          <button type="submit" className="create">
+            Crear Nota
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate("/notes")}
+            className="cancel"
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     </div>
   );

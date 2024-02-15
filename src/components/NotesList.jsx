@@ -78,6 +78,7 @@ const NotesList = () => {
                       e.preventDefault();
                       handleDeleteNote(note.id);
                     }}
+                    className="remove-btn"
                   >
                     Remove
                   </a>
@@ -86,7 +87,7 @@ const NotesList = () => {
             </div>
           ))
         ) : (
-          <div>No tienes ninguna nota</div>
+          <div className="empty-note">Por ahora no tenemos ninguna nota</div>
         )}
       </div>
     </div>
