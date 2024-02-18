@@ -25,25 +25,19 @@ export const loginUser = async (credentials) => {
 };
 
 // Función para registrar un nuevo usuario
-export const registerUser = async (userData) => {
-  try {
-    // Realizamos una solicitud POST al endpoint /CreateUser del backend
-    const response = await fetch(`${baseURL}/CreateUser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Especificamos el tipo de contenido como JSON
-      },
-      body: JSON.stringify(userData), // Convertimos los datos del nuevo usuario a formato JSON y los enviamos en el cuerpo de la solicitud
-    });
-    const data = await response.json(); // Convertimos la respuesta a JSON
-    if (!response.ok) {
-      // Si la respuesta no es exitosa, lanzamos un error con el mensaje proporcionado por el servidor
-      throw new Error(data.message);
-    }
-    return data; // Devolvemos los datos del usuario registrado si la operación es exitosa
-  } catch (error) {
-    // Capturamos cualquier error y lo lanzamos
-    throw new Error(error.message);
+export const registerUserService = async ({ userName, email, password }) => {
+  const response = await fetch(`${baseURL}/register`, {
+    method: "POST",
+    body: JSON.stringify({ userName, email, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
   }
 };
 

@@ -1,116 +1,86 @@
-.container {
-  max-width: 800px; /* Ajusta el ancho máximo del contenedor */
-  margin: 0 auto; /* Centra el contenedor horizontalmente */
-}
+/* Estilos en CreateUser.css */
 
- 
-
-.note {
-  /* Eliminar flex para asegurar que cada nota ocupe toda la anchura disponible */
-  /* flex: 0 1 calc(25% - 20px); */ /* Tamaño de cada columna (25% menos el espacio entre las notas) */
-  width: 100%; /* Cada nota ocupa toda la anchura disponible */
-  padding: 10px;
-  background-color: rgb(54, 61, 139); /* Color de fondo de cada nota */
-  color: white; /* Color del texto */
-  margin-bottom: 20px; /* Espacio entre las notas */
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  position: relative; /* Establecer la posición relativa para poder posicionar los botones */
+.note-container {
+  /* background-color: #dddedb; Cambio de color de fondo */
+  padding: 20px;
+  border-radius: 10px;
 }
-
-.note-buttons {
-  position: absolute; /* Establecer la posición absoluta para posicionar los botones dentro de la nota */
-  bottom: 10px; /* Ajustar la posición vertical de los botones */
-  right: 10px; /* Ajustar la posición horizontal de los botones */
-  display: flex; /* Usar flexbox para alinear los enlaces "Edit" y "Remove" */
-  justify-content: flex-end; /* Alinear los enlaces a la derecha */
-}
-
-.note-buttons a {
-  margin-left: 10px; /* Espacio entre los enlaces "Edit" y "Remove" */
-  color: white; /* Color del texto */
-}
-.note-buttons-wrapper {
-  margin-top: 80px; /* Ajusta el margen superior según sea necesario */
-}
-notes-title {
-  text-align: left; /* Alinea el texto a la izquierda */
-}
-
-
 .containerMynotes {
-  max-width: 800px; /* Ajusta según sea necesario */
-  margin: 25px auto 0 auto; /* Margen superior, auto para los laterales y cero en la parte inferior */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.my-notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.new-note-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .note-container {
-  max-width: 100%; /* Utiliza el ancho máximo disponible */
-  padding: 20px; /* Añadir relleno alrededor del contenido */
-  margin-top: 20px; /* Agregar margen superior para separarlo del contenedor de título */
-}
-.my-notes-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-.new-note-btn-container {
-  margin-left: auto;
-}
-.new-note-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #0056b3;;
-  color: #fff;
-  text-decoration: none;
-  border: none;
+.note {
+  background-color: #e2dfdf;
+  padding: 20px;
   border-radius: 5px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-.new-note-btn:hover {
-  background-color: #007bff;
+.note-content {
+  flex-grow: 1; /* El contenido de la nota ocupa todo el espacio disponible */
 }
-/* En tu archivo NotesList.css */
+
+.note-buttons {
+  margin-top: auto; 
+}
+
+.remove-btn {
+  margin-top: 5px; /* Espacio entre los enlaces */
+}
 
 .empty-note {
-  background-color: #ffffff; /* Fondo blanco */
-  border-radius: 8px; /* Esquinas redondeadas */
-  padding: 10px 20px; /* Espaciado interno */
-  color: rgb(0, 166, 255); /* Texto azul */
-  display: inline-block; /* Mostrar como elemento en línea */
-  position: relative; /* Posición relativa para el icono de bocadillo */
+  text-align: center;
+  font-style: italic;
+}
+/* Estilos en CreateUser.css */
+.note-buttons-wrapper {
+  display: flex;
+  justify-content: center; 
 }
 
-.empty-note::before {
-  content: ""; /* Contenido vacío */
-  position: absolute; /* Posición absoluta para el icono de bocadillo */
-  border-width: 10px; /* Tamaño del bocadillo */
-  border-style: solid; /* Estilo de borde sólido */
-  border-color: transparent #ffffff transparent transparent; /* Colores del borde */
-  top: 50%; /* Posición en la parte superior al 50% */
-  left: -20px; /* Posición a la izquierda */
-  transform: translateY(-50%); /* Centrar verticalmente */
+.note-buttons-wrapper a {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0 5px; /
 }
-.note-buttons a.remove-btn {
-  color: #fFFFFFF4; 
+.note-buttons {
+  margin-top: auto; 
+  display: flex;
+  justify-content: flex-end; 
 }
-
-/* Estilos para los botones de edición y eliminación */
-.note-buttons a {
-  color: #FFFFFF; /* Color azul */
-  text-decoration: underline; /* Subrayado como indicador de enlace */
-  margin-left: 10px; /* Espacio entre los botones */
-  cursor: pointer; /* Cursor apuntando */
+.remove-btn {
+  margin-left: 2px; /* Espacio entre los enlaces */
+  cursor: pointer;
+}
+.remove-btn:hover {
+  color: red;
 }
 
-/* Estilos cuando se pasa el mouse sobre los botones */
-.note-buttons a:hover {
-  text-decoration: none; /* Quitar el subrayado al pasar el mouse */
-  color: #0056b3; /* Color azul más oscuro */
-}
-
-/* Estilos específicos para el botón "Remove" */
-.note-buttons a.remove-btn:hover {
-  color: #ff0000; /* Cambiar el color a rojo */
+.edit-btn:hover {
+  color: #fff; /* Cambia el color del texto a blanco cuando pasas sobre el botón */
 }

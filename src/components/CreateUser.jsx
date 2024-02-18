@@ -1,55 +1,73 @@
-// CreateUser.jsx
-import React, { useState } from "react";
+import { useState } from "react";
+import { registerUserService } from "../services"; // Importa la función registerUserService
+import { useNavigate } from "react-router-dom";
 
-function CreateUser() {
-  const [name, setName] = useState("");
+const CreateUser = () => {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
 
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      await registerUserService({ userName, email, password }); // Llama a la función registerUserService con los datos del formulario
+      // Aquí puedes redirigir al usuario a la página de éxito o a donde desees
+      console.log("Usuario registrado exitosamente");
+      // Limpiar los campos del formulario después del registro exitoso
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      navigate("/notes");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Register</button>
-    </form>
-  );
-}
+    <section>
+      <h1>Register</h1>
+      <form onSubmit={handleForm}>
+        <fieldset>
+          <label htmlFor="userName">Name</label>
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </fieldset>
 
-export default CreateUser;
+        <button type="submit">Register</button>
+        {error && <p>{error}</p>}
+      </form>
+    </section>
+  );
+};
+
+export default CreateUser; // Exporta el componente CreateUser
