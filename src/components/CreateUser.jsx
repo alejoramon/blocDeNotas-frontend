@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { registerUserService } from "../services"; // Importa la función registerUserService
+import React, { useState } from "react";
+import { registerUserService } from "../services";
 import { useNavigate } from "react-router-dom";
 
 const CreateUser = () => {
@@ -8,20 +8,30 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // Nuevo estado para el mensaje de registro exitoso
 
   const handleForm = async (e) => {
     e.preventDefault();
 
     try {
-      await registerUserService({ userName, email, password }); // Llama a la función registerUserService con los datos del formulario
-      // Aquí puedes redirigir al usuario a la página de éxito o a donde desees
-      console.log("Usuario registrado exitosamente");
+      // Llama a la función registerUserService con los datos del formulario
+      await registerUserService({ userName, email, password });
+
+      // Almacena el nombre de usuario registrado con éxito en el estado
+      setSuccessMessage(`Registered successfully as ${userName}`); // Establece el mensaje de registro exitoso
+
       // Limpiar los campos del formulario después del registro exitoso
       setUserName("");
       setEmail("");
       setPassword("");
-      navigate("/notes");
+
+      // Espera un segundo antes de redirigir al usuario
+      setTimeout(() => {
+        // Redirige al usuario a la página de inicio de sesión después de un registro exitoso
+        navigate("/login");
+      }, 1000);
     } catch (error) {
+      // Si ocurre un error, establece el estado de error para mostrar un mensaje al usuario
       setError(error.message);
     }
   };
@@ -62,12 +72,14 @@ const CreateUser = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </fieldset>
-
         <button type="submit">Register</button>
         {error && <p>{error}</p>}
+        {/* Muestra el mensaje de error si hay algún error */}
+        {successMessage && <p>{successMessage}</p>}
+        {/* Muestra el mensaje de registro exitoso si hay uno */}
       </form>
     </section>
   );
 };
 
-export default CreateUser; // Exporta el componente CreateUser
+export default CreateUser;
