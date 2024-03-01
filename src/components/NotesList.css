@@ -84,3 +84,6 @@
 .edit-btn:hover {
   color: #fff; /* Cambia el color del texto a blanco cuando pasas sobre el botón */
 }
+.note-buttons-wrapper span {
+  color: black; /* Cambia el color del texto dentro de los span a negro */
+}

@@ -63,15 +63,20 @@ const NotesList = () => {
         {notes.length > 0 ? (
           notes.map((note, index) => (
             <div key={note.id} className="note">
-              <strong>{note.title}</strong>
-              <br />
-              <span>Categoria: {note.categoriaId}</span>{" "}
-              {/* Mostrar la categoriaId aquí */}
-              <br />
-              {note.text}
+              <strong>Title: {note.title}</strong>
+              <p>Detail: {note.detail}</p>
+              <span>Category: {note.categoriaId}</span>
+
               <div className="note-buttons">
                 <div className="note-buttons-wrapper">
-                  <Link to={`/edit/${note.id}`}>Edit</Link>
+                  <Link to={`/note/${note.id}`} className="view-note-btn">
+                    See note
+                  </Link>
+                  <span> | </span>
+                  <Link to={`/edit/${note.id}`} className="note-action-btn">
+                    Edit
+                  </Link>
+                  <span> | </span>
                   <a
                     onClick={(e) => {
                       e.preventDefault();
@@ -79,7 +84,7 @@ const NotesList = () => {
                     }}
                     className="remove-btn"
                   >
-                    Remove
+                    Delete
                   </a>
                 </div>
               </div>

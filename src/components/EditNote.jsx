@@ -58,7 +58,7 @@ function EditNote() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Título:
+        Title:
         <input
           type="text"
           name="title"
@@ -68,7 +68,7 @@ function EditNote() {
       </label>
       <br />
       <label>
-        Detalle:
+        Detail:
         <input
           type="text"
           name="detail"
@@ -78,12 +78,12 @@ function EditNote() {
       </label>
       <br />
       <label>
-        Texto:
+        Text:
         <textarea name="text" value={noteData.text} onChange={handleChange} />
       </label>
       <br />
       <label>
-        Categoría ID:
+        Category ID:
         <select
           value={noteData.categoriaId}
           name="categoriaId"
@@ -100,14 +100,14 @@ function EditNote() {
       <br />
       <div className="form-actions">
         <button type="submit" className="update">
-          Actualizar Nota
+          Update note
         </button>
         <button
           type="button"
           onClick={() => navigate("/notes")}
           className="cancel"
         >
-          Cancelar
+          Cancel
         </button>
       </div>
     </form>
