@@ -58,7 +58,7 @@ function EditNote() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Title:
+        T:
         <input
           type="text"
           name="title"
