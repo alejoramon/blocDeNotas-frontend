@@ -20,11 +20,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/CreateUser" element={<CreateUser />} />
+          <Route path="/createuser" element={<CreateUser />} />
           <Route path="/create" element={<CreateNote />} />
-          <Route path="/Show/:noteId" element={<NoteShow />} />
           <Route path="/notes" element={<NotesList />} />
           <Route path="/edit/:noteId" element={<EditNote />} />
+          <Route path="/show/:noteId" element={<NoteShow />} />
         </Routes>
         <Footer />
       </Router>

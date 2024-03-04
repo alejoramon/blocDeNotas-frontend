@@ -212,3 +212,42 @@ export const deleteNote = async (noteId, token) => {
     throw new Error(error.message);
   }
 };
+// Función para obtener todas las notas disponibles con sus categorías
+export const getAllNotesWithCategories = async (token) => {
+  try {
+    const response = await fetch(`${baseURL}/notas-with-categories`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+// Función para obtener el nombre de la categoría basado en su ID
+// Función para obtener el nombre de la categoría basado en su ID
+export const getCategoryName = async (categoryId, user) => {
+  try {
+    const response = await fetch(`${baseURL}/categories/${categoryId}`, {
+      headers: {
+        Authorization: `${user.token}`,
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data.name; // Suponiendo que el nombre de la categoría se encuentra en la propiedad "name"
+  } catch (error) {
+    console.error("Error fetching category name:", error);
+    return "Sin categoría"; // Devolver un valor predeterminado en caso de error
+  }
+};

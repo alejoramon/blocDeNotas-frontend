@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import { deleteNote } from "../services";
+
 import "./NotesList.css";
+
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
@@ -10,7 +13,7 @@ const NotesList = () => {
   const [user] = useUser();
 
   const fetchNotes = () => {
-    fetch("http://localhost:4000/notas", {
+    fetch(BACK_URL + "/notas", {
       headers: {
         Authorization: `${user.token}`,
       },
@@ -21,8 +24,7 @@ const NotesList = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(data.data);
+      .then(async (data) => {
         setNotes(data.data);
       })
       .catch((error) => console.error("Error fetching notes:", error))
@@ -65,11 +67,11 @@ const NotesList = () => {
             <div key={note.id} className="note">
               <strong>Title: {note.title}</strong>
               <p>Detail: {note.detail}</p>
-              <span>Category: {note.categoriaId}</span>
-
+              <p>Category: {note.categoriaName}</p>{" "}
+              {/* Mostrar el nombre de la categoría */}
               <div className="note-buttons">
                 <div className="note-buttons-wrapper">
-                  <Link to={`/note/${note.id}`} className="view-note-btn">
+                  <Link to={`/show/${note.id}`} className="view-note-btn">
                     See note
                   </Link>
                   <span> | </span>

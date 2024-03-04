@@ -4,6 +4,7 @@ import "./LoginForm.css"; // Importa el archivo de estilo
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
+const BACK_URL = import.meta.env.VITE_BACK_URL;
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/login", {
+      const response = await fetch(BACK_URL + "/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
